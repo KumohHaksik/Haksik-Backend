@@ -4,7 +4,7 @@ import type { MealType,HaksikType } from "../entitys/Menu";
 import { Menu } from "../entitys/Menu";
 import {ResBody} from "../ResBody";
 import * as moment from "moment";
-export async function getMenu(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
+export async function fetchMenu(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
     //const name = request.query.get('name') || await request.text() || 'world';
     var $context = await ApplicationContext;
     if(!$context.isInitialized){
@@ -58,8 +58,8 @@ export async function getMenu(request: HttpRequest, context: InvocationContext):
     return { body: res.ToString()  };
 }
 
-app.http('getMenu', {
+app.http('menu', {
     methods: ['GET', 'POST'],
     authLevel: 'anonymous',
-    handler: getMenu
+    handler: fetchMenu
 });
